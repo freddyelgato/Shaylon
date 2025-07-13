@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShaYlon</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+    }
+
+    .frase {
+      width: 100%;
+      max-width: 600px;
+      font-size: 1.8rem;
+      font-weight: 500;
+      text-align: center;
+      color: #ffffff;
+      text-shadow:
+        1px 1px 5px rgba(0, 0, 0, 0.6),
+        0 0 12px #a00;
+      margin: 10px auto;
+      z-index: 10;
+      position: relative;
+      padding: 12px 18px;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      background-color: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .imagen {
+      width: 90vw;
+      max-width: 600px;
+      max-height: 60vh;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.4));
+      z-index: 10;
+      position: relative;
+    }
+
+    .rosa {
+      position: fixed;
+      width: 50px;
+      height: auto;
+      top: -60px;
+      animation-name: caerUnaVez;
+      animation-timing-function: ease-in;
+      animation-iteration-count: 1;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes caerUnaVez {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .frase {
+        font-size: 1.3rem;
+        padding: 10px 14px;
+        max-width: 90vw;
+        margin: 8px auto;
+      }
+
+      .imagen {
+        width: 95vw;
+        max-height: 50vh;
+      }
+
+      .rosa {
+        width: 35px;
+      }
+    }
+
+    /* Estilo para el reproductor en esquina */
+    .soundcloud-player {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      height: 80px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 85, 0, 0.5);
+      z-index: 9999;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    @media (max-width: 480px) {
+      .soundcloud-player {
+        width: 90vw;
+        right: 5vw;
+        bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frase">
+    🌹 "Tus ojos encendidos reflejan el fuego de mi corazón." 🌹
+  </div>
+
+  <img class="imagen" src="https://i.imgur.com/9cM0s3v.png" alt="Imagen romántica" />
+
+  <div class="frase">
+    "¿Y Si Somos Nuestro Propio Romance Adolescente?"
+  </div>
+
+  <script>
+    const urlRosa = "https://i.imgur.com/6PqDYo9.png";
+
+    function crearRosa() {
+      const rosa = document.createElement("img");
+      rosa.src = urlRosa;
+      rosa.classList.add("rosa");
+
+      rosa.style.left = Math.random() * window.innerWidth + "px";
+
+      const duracion = 6000 + Math.random() * 5000;
+      rosa.style.animationDuration = `${duracion}ms`;
+
+      document.body.appendChild(rosa);
+
+      setTimeout(() => {
+        rosa.remove();
+      }, duracion + 100);
+    }
+
+    for (let i = 0; i < 30; i++) {
+      setTimeout(crearRosa, Math.random() * 10000);
+    }
+
+    setInterval(crearRosa, 500);
+  </script>
+
+  <!-- Reproductor SoundCloud en esquina inferior derecha -->
+  <iframe
+    class="soundcloud-player"
+    allow="autoplay"
+    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/thecroagh/esperon-luma&color=%23ff5500&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+    scrolling="no"
+  ></iframe>
+
+
+</body>
+</html>
